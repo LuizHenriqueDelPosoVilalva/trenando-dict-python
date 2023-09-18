@@ -44,7 +44,9 @@ def menu(lista, cont):
                     print("Aluno não encontrado")
             case 6:
                 print("-- Media das notas de todos os alunos cadastrados --")
-                media_alunos(lista)
+                resultadoMedias = apresentar_medias_alunos(lista)
+                print(resultadoMedias)
+                
             case 0:
                 break
             case _:
@@ -121,11 +123,26 @@ def excluir_aluno(lista, posicao):
     remover = lista.pop(posicao)
     return remover
 
-def media_alunos(lista):
-    tamanho = len(lista)
-    if tamanho > 0:
-        for i in range(tamanho):
-            nota =1 lista[i]['nota1_aluno']
+def media_alunos(aluno):
+    nota1 = aluno['nota1_aluno']
+    nota2 = aluno['nota2_aluno']
+    nota3 = aluno['nota3_aluno']
+    nota4 = aluno['nota4_aluno']
+    media = (nota1 + nota2 + nota3 + nota4) /4
+    return media
+    
+def apresentar_medias_alunos(lista):
+    if not lista:
+        return "A lista de alunos está vazia."
+
+    apresentacao = "Médias dos alunos:\n"
+    for aluno in lista:
+        nome_aluno = aluno['nome']
+        media_aluno = media_alunos(aluno)
+        apresentacao += f"{nome_aluno}: {media_aluno:.2f}\n"
+
+    return apresentacao
+
 
 
 contador = 0
